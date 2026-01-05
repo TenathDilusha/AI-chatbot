@@ -18,6 +18,7 @@ Demo AI responses using mock data or free AI API
 Easy to extend with paid APIs for full AI functionality
 
 Project Structure
+```bash
 project-root/
 │
 ├── backend/
@@ -37,7 +38,7 @@ project-root/
 │       └── api.js          # API call to backend
 │
 └── README.md
-
+```
 Setup Instructions
 1. Backend
 
