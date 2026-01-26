@@ -1,22 +1,38 @@
-import dotenv from "dotenv";
-import { GoogleGenAI } from "@google/genai";
-
+import dotenv from 'dotenv';
+import fetch from 'node-fetch';
 dotenv.config();
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-export async function sendToGemini(userMessage) {
+export async function sendToGemini(message) {
   try {
-    const prompt = `You are a helpful Student Assistant AI. Answer politely and clearly.\n\nUser: ${userMessage}\n\nAssistant:`;
-    const response = await ai.models.generateContent({
-      model: "models/gemini-2.5-pro",
-      contents: prompt,
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.GEMINI_API}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "google/gemini-2.0-flash-exp:free",
+        messages: [
+          { role: "user", content: [{ type: "text", text: message }] }
+        ]
+      })
     });
-    console.log("Gemini API response:", response.text);
-    return response.text;
-  } catch (e) {
-    console.error("Gemini error:", e);
-    throw e;
+
+    const text = await response.text();
+
+    const data = JSON.parse(text);
+    const choice = data.choices?.[0]?.message;
+
+    if (!choice) return "No response from Gemini.";
+
+    if (Array.isArray(choice.content)) {
+      return choice.content.map(c => c.text).join("\n") || "No text in content.";
+    } else if (typeof choice.content === "string") {
+      return choice.content;
+    } else {
+      return "Unexpected response format.";
+    }
+  } catch (err) {
+    return "Failed to get response from Gemini.";
   }
 }
-

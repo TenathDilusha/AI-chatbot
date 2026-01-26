@@ -15,26 +15,30 @@ function ChatBox() {
 
   useEffect(scrollToBottom, [messages, loading]);
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+const handleSend = async () => {
+  if (!input.trim()) return;
 
-    const userMessage = { sender: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
-    setInput("");
-    setLoading(true);
+  const userMessage = { sender: "user", text: input };
 
-    try {
-      const botReply = await sendMessage(input);
-      setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: "⚠️ Error connecting to server." }
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setMessages((prev) => [...prev, userMessage]);
+  setInput("");
+  setLoading(true);
+
+  try {
+    const botReply = await sendMessage(input);
+
+    setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+  } catch (error) {
+    console.log("Error:", error);
+    setMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: "⚠️ Error connecting to server." }
+    ]);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="chat-box">
@@ -52,7 +56,9 @@ function ChatBox() {
           type="text"
           placeholder="Ask something..."
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
         <button onClick={handleSend}>Send</button>
