@@ -1,5 +1,6 @@
-import dotenv from 'dotenv';
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
+import dotenv from "dotenv";
+
 dotenv.config();
 
 export async function sendToGemini(message) {
@@ -13,26 +14,27 @@ export async function sendToGemini(message) {
       body: JSON.stringify({
         model: "google/gemini-2.0-flash-exp:free",
         messages: [
-          { role: "user", content: [{ type: "text", text: message }] }
+          {
+            role: "user",
+            content: message
+          }
         ]
       })
     });
 
-    const text = await response.text();
-
-    const data = JSON.parse(text);
-    const choice = data.choices?.[0]?.message;
-
-    if (!choice) return "No response from Gemini.";
-
-    if (Array.isArray(choice.content)) {
-      return choice.content.map(c => c.text).join("\n") || "No text in content.";
-    } else if (typeof choice.content === "string") {
-      return choice.content;
-    } else {
-      return "Unexpected response format.";
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("API error:", response.status, errorText);
+      return "Sorry, the AI service is temporarily unavailable. Please try again later.";
     }
+
+    const data = await response.json();
+    
+    // OpenRouter returns: data.choices[0].message.content (string)
+    const reply = data.choices?.[0]?.message?.content || "No response received.";
+    return reply;
   } catch (err) {
-    return "Failed to get response from Gemini.";
+    console.error("Error calling AI API:", err);
+    return "Sorry, there was an error processing your request.";
   }
 }

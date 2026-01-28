@@ -1,10 +1,17 @@
 export async function sendMessage(message) {
-  const response = await fetch("http://localhost:5000/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message })
-  });
+  try {
+    const res = await fetch("http://localhost:5000/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
 
-  const data = await response.json();
-  return data.reply;
+    if (!res.ok) throw new Error("Server error");
+
+    const data = await res.json();
+    return data.reply;
+  } catch (err) {
+    console.error("Error sending message:", err);
+    return "⚠️ Error connecting to server.";
+  }
 }

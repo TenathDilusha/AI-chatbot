@@ -5,15 +5,15 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const { message } = req.body;
-  if (!message)
-    return res.status(400).json({ error: "Message is required" });
+
+  if (!message) return res.status(400).json({ error: "Message is required" });
 
   try {
     const reply = await sendToGemini(message);
     res.json({ reply });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Error talking to Gemini API" });
+    console.error("Error in chat route:", err);
+    res.status(500).json({ error: "Failed to process your message." });
   }
 });
 

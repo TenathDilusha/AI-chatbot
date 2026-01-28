@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import chatRoutes from "./routes/chat.js";
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -13,10 +12,6 @@ app.use(express.json());
 
 app.use("/api/chat", chatRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Gemini backend running!");
-});
+app.get("/", (req, res) => res.send("Gemini backend running!"));
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
