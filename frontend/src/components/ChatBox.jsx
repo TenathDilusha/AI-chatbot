@@ -48,7 +48,16 @@ const handleSend = async () => {
             {msg.text}
           </div>
         ))}
-        {loading && <div className="message bot">Typing...</div>}
+        {loading && (
+          <div className="thinking">
+            <div className="thinking-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span className="thinking-text">AI is thinking...</span>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
       <div className="input-area">

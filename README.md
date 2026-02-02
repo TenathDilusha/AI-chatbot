@@ -1,23 +1,25 @@
-Student Assistant AI
-Overview
+AI Chatbot
+=========
 
-Student Assistant AI is a web-based chatbot designed to help students with queries about their studies, schedule, and general information. The project demonstrates how AI chatbots work with a frontend UI and a backend server.
-
-⚠️ For demo purposes, the chatbot can use mock responses or a limited free API (like Google Gemini free tier).
+This project is a full-stack AI chatbot that allows users to interact with an AI assistant through a modern web interface. The backend uses Node.js and Express to connect to an Ollama-powered large language model (LLM), while the frontend is built with React and Vite for a fast, responsive user experience.
 
 Features
+--------
+- Real AI-powered chat using Ollama (Llama 3.2 model)
+- Modern React frontend (Vite)
+- Node.js + Express backend
+- Easy to extend and customize
+- Clean, student-friendly UI
 
-Chat interface to type questions and receive answers
-
-Frontend built with HTML, CSS, JavaScript (React optional)
-
-Backend built with Node.js + Express
-
-Demo AI responses using mock data or free AI API
-
-Easy to extend with paid APIs for full AI functionality
+How it works
+------------
+1. The user types a message in the chat UI.
+2. The frontend sends the message to the backend API.
+3. The backend forwards the message to Ollama and returns the AI's response.
+4. The frontend displays the AI's reply in the chat window.
 
 Project Structure
+-----------------
 ```bash
 project-root/
 │
@@ -26,18 +28,31 @@ project-root/
 │   ├── routes/
 │   │   └── chat.js         # Chat API route
 │   ├── services/
-│   │   └── gemini.js       # AI integration (Gemini or mock)
+│   │   └── ollama.js       # Ollama AI integration
 │   ├── package.json
-│   └── .env                # API keys and config
+│   └── .env                # API keys and config (if needed)
 │
 ├── frontend/
 │   ├── index.html          # Main HTML page
-│   ├── styles.css          # Styles for UI
-│   ├── app.js              # Frontend JS for chat
-│   └── services/
-│       └── api.js          # API call to backend
+│   ├── src/                # React source code
+│   ├── styles/             # CSS for UI
+│   ├── services/
+│   │   └── api.js          # API call to backend
+│   ├── package.json
+│   └── vite.config.js      # Vite config
 │
 └── README.md
+```
+
+Setup
+-----
+1. Start Ollama locally and ensure the Llama 3.2 model is available.
+2. In `backend/`, run `npm install` and then `npm start`.
+3. In `frontend/`, run `npm install` and then `npm run dev`.
+4. Open the frontend in your browser and start chatting!
+
+---
+This project is for educational and demonstration purposes. You can easily adapt it to use other models or APIs as needed.
 ```
 Setup Instructions
 1. Backend
@@ -53,12 +68,6 @@ Install dependencies:
 ```bash
 npm install
 ```
-
-Add .env file with your API key (optional for demo):
-
-GEMINI_API_KEY=YOUR_KEY
-PORT=5000
-
 
 Start the server:
 
