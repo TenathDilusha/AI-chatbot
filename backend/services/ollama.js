@@ -1,4 +1,10 @@
 import fetch from "node-fetch";
+import { marked } from "marked";
+
+function formatOllamaResponse(rawText) {
+  return marked.parse(rawText);
+}
+
 
 export async function getOllamaResponse(userInput) {
   const response = await fetch("http://localhost:11434/api/chat", {
@@ -15,5 +21,5 @@ export async function getOllamaResponse(userInput) {
   });
 
   const data = await response.json();
-  return data.message.content;
+  return formatOllamaResponse(data.message.content);
 }

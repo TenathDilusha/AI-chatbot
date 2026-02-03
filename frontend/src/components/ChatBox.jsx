@@ -44,9 +44,11 @@ const handleSend = async () => {
     <div className="chat-box">
       <div className="messages">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`message ${msg.sender}`}>
-            {msg.text}
-          </div>
+          <div 
+            key={idx} 
+            className={`message ${msg.sender}`}
+            dangerouslySetInnerHTML={{ __html: msg.text }}
+          />
         ))}
         {loading && (
           <div className="thinking">
