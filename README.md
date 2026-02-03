@@ -46,15 +46,9 @@ project-root/
 
 Setup
 -----
-1. Start Ollama locally and ensure the Llama 3.2 model is available.
-2. In `backend/`, run `npm install` and then `npm start`.
-3. In `frontend/`, run `npm install` and then `npm run dev`.
-4. Open the frontend in your browser and start chatting!
 
----
-This project is for educational and demonstration purposes. You can easily adapt it to use other models or APIs as needed.
-
-Setup Instructions
+**Start Ollama locally and ensure the Llama 3.2 model is available.**
+   
 1. Backend
 
 Navigate to the backend folder:
@@ -72,10 +66,28 @@ npm install
 Start the server:
 
 ```bash
-npm run dev
+npm start
 ```
 
 2. Frontend
+
+Navigate to the frontend folder:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the server:
+
+```bash
+npm run dev
+```
 
 Open frontend/index.html in your browser, or run a local server (e.g., VS Code Live Server)
 
@@ -89,5 +101,6 @@ Frontend: HTML, CSS, JavaScript
 Backend: Node.js, Express
 
 AI: llama 3.2
+
 
 
