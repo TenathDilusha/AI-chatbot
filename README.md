@@ -29,8 +29,8 @@ project-root/
 │   │   └── chat.js         # Chat API route
 │   ├── services/
 │   │   └── ollama.js       # Ollama AI integration
-│   ├── package.json
-│   └── .env                # API keys and config (if needed)
+│   └── package.json
+│   
 │
 ├── frontend/
 │   ├── index.html          # Main HTML page
@@ -53,7 +53,7 @@ Setup
 
 ---
 This project is for educational and demonstration purposes. You can easily adapt it to use other models or APIs as needed.
-```
+
 Setup Instructions
 1. Backend
 
@@ -81,11 +81,6 @@ Open frontend/index.html in your browser, or run a local server (e.g., VS Code L
 
 Type a message in the chat box to interact with the bot
 
-Notes
-
-Free API usage is limited. For unlimited AI responses, a paid plan or local AI model is required.
-
-For demo purposes, you can use mock responses in services/gemini.js by returning predefined answers.
 
 Tech Stack
 
@@ -93,14 +88,6 @@ Frontend: HTML, CSS, JavaScript
 
 Backend: Node.js, Express
 
-AI: Google Gemini (optional), Mock responses for demo
+AI: llama 3.2
 
-Future Improvements
 
-Integrate full AI with Gemini or OpenAI paid API
-
-Add authentication for users
-
-Add persistent chat history using a database
-
-Extend bot to answer subject-specific queries
