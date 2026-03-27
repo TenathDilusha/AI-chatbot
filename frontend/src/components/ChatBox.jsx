@@ -3,7 +3,7 @@ import { sendMessage } from "../services/api";
 
 function ChatBox() {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi! I'm your Student Assistant. How can I help you today?" }
+    { sender: "bot", text: "Hey! I’m Tenath, a Computer Science student who loves AI and coding. Ask me anything!" }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
