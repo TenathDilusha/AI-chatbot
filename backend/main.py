@@ -12,6 +12,9 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
 
+ERROR_THRESHOLD = 0.7
+
+
 class ChatbotModel(nn.Module):
 
     def __init__(self, input_size, output_size):
@@ -171,22 +174,26 @@ class ChatbotAssistant:
         self.model.eval()
         with torch.no_grad():
             predictions = self.model(bag_tensor)
+            probs = F.softmax(predictions, dim=1)
+            best_prob, predicted_index = torch.max(probs, dim=1)
 
-        probs = F.softmax(predictions, dim=1)
-        confidence = torch.max(probs).item()
+        if best_prob.item() < ERROR_THRESHOLD:
+            predicted_intent = "fallback"
+        else:
+            predicted_intent = self.intents[predicted_index.item()]
 
-        if confidence < 0.6:
-            return "Hmm, I’m not sure about that. Try asking something else!"
+        matched_responses = self.intents_responses.get(predicted_intent)
+        if not matched_responses:
+            predicted_intent = "fallback"
+            matched_responses = self.intents_responses.get("fallback")
 
-        predicted_class_index = torch.argmax(predictions, dim=1).item()
-        predicted_intent = self.intents[predicted_class_index]
-
-        if self.function_mappings and predicted_intent in self.function_mappings:
+        if predicted_intent != "fallback" and self.function_mappings and predicted_intent in self.function_mappings:
             self.function_mappings[predicted_intent]()
 
-        if self.intents_responses.get(predicted_intent):
-            return random.choice(self.intents_responses[predicted_intent])
-        return None
+        if matched_responses:
+            return random.choice(matched_responses)
+
+        return "Hmm, I’m not sure about that. Try asking something else!"
 
 
 def ensure_nltk_data():

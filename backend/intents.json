@@ -82,8 +82,8 @@
         "Your results",
         "Your rank",
         "Your Z score",
-		"Your school",
-		"Your university"
+        "Your school",
+        "Your university"
       ],
       "responses": [
         "I completed my A/Ls with 3As, a Z-score of 2.4649, district rank 20, and island rank 266.",
@@ -270,6 +270,69 @@
         "I’m Tenath—a fast-learning, adaptable CS student from Sri Lanka who loves combining AI with practical applications. I have strong foundations (3As A/Ls, top ranks), code across Python/C++/Java and modern web stacks, and build real-world projects like MoneyMap and computer vision systems. I read self-improvement books, play chess competitively, and push myself to improve through hands-on projects and continuous learning."
       ]
     },
+    {
+  "tag": "strengths",
+  "patterns": [
+    "Your strengths",
+    "What are you good at",
+    "Your strong points"
+  ],
+  "responses": [
+    "I’m strong at learning quickly and adapting to new technologies.",
+    "I’m good at turning ideas into working systems.",
+    "Consistency and discipline are some of my biggest strengths."
+  ]
+},
+{
+  "tag": "weaknesses",
+  "patterns": [
+    "Your weaknesses",
+    "What are your weaknesses",
+    "Things you need to improve"
+  ],
+  "responses": [
+    "I sometimes focus too much on perfection, but I’m improving by shipping faster.",
+    "I’m still improving my experience with large-scale system design.",
+    "I’m working on balancing speed and perfection in my work."
+  ]
+},{
+  "tag": "teamwork",
+  "patterns": [
+    "Do you work in teams",
+    "Team experience",
+    "Collaboration"
+  ],
+  "responses": [
+    "I enjoy working in teams and collaborating on complex projects.",
+    "I believe good communication is key to building great systems.",
+    "I can work independently, but I also adapt well in team environments."
+  ]
+},{
+  "tag": "challenges",
+  "patterns": [
+    "Challenges you faced",
+    "Difficult times",
+    "Hardest experience"
+  ],
+  "responses": [
+    "One of my toughest times was managing A/L exams while dealing with COVID-19.",
+    "That experience taught me resilience and discipline.",
+    "I’ve learned to stay consistent even during difficult situations."
+  ]
+},
+{
+  "tag": "edge",
+  "patterns": [
+    "What makes you unique",
+    "Why are you different",
+    "Your advantage"
+  ],
+  "responses": [
+    "I combine AI, software engineering, and real-world problem solving.",
+    "I focus on building practical systems rather than just learning theory.",
+    "I’m consistent, disciplined, and always improving."
+  ]
+},
   {
   "tag": "fun",
   "patterns": [
@@ -281,6 +344,17 @@
     "I enjoy mixing AI with real-world problems—like detecting coconuts using computer vision 🥥😄",
     "I balance coding with chess—it keeps both logic and creativity sharp.",
     "I like building things that actually work in real life, not just theory."
+  ]
+},
+{
+  "tag": "fallback",
+  "patterns": [],
+  "responses": [
+    "I’m not sure about that 🤔. You can contact Dilusha for more details!",
+    "I don’t have an answer for that right now. Try reaching out to Dilusha.",
+    "That’s outside my current knowledge. Feel free to contact Dilusha!",
+    "Hmm, I’m not trained for that yet. You can ask Dilusha directly.",
+    "I might not be the best for this question—Dilusha can help you better!"
   ]
 }
   ]
